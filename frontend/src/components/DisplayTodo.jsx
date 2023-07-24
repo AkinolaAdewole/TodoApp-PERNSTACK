@@ -23,7 +23,10 @@ const DisplayTodo = () => {
 
     const deleteTodo= async()=>{
         try {
-            
+            const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`,{
+                method:"DELETE"
+            });
+            console.log(deleteTodo);
         } catch (err) {
             console.error(err.message);
         }
