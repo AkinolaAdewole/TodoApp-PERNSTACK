@@ -1,10 +1,13 @@
-import React,{Fragment} from 'react'
+import React,{Fragment, useState} from 'react'
 
-const EditTodo = () => {
+const EditTodo = ({todo}) => {
+    const [description, setDescription]=useState("");
+    // console.log(todo);
   return (
     <Fragment>
 
-        <button type="button" className="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" className="btn btn-warning" 
+         data-bs-toggle="modal" data-bs-target="#exampleModal">
          Edit
         </button>
 
