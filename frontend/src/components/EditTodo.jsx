@@ -2,13 +2,26 @@ import React,{Fragment, useState} from 'react'
 
 const EditTodo = ({todo}) => {
     const [description, setDescription]=useState(todo.description);
-
     // console.log(todo);
+
+    const updateTodo= async (e)=>{
+        e.preventDefault()
+        try {
+            const body = {description};
+            const response = await fetch(`http://localhost:5000/todos/${todo.todo_id}`,
+            {
+                method :"PUT",
+                headers:{"Content-Type":"application/json"},
+            })
+        } catch (err) {
+            console.error(err.message);
+        }
+    }
   return (
     <Fragment>
 
         <button type="button" className="btn btn-warning" 
-         data-bs-toggle="modal" data-bs-target="#exampleModal">
+         data-bs-toggle="modal" data-bs-target={`#id${todo.todo_id}`}>
          Edit
         </button>
 
@@ -21,12 +34,12 @@ const EditTodo = ({todo}) => {
             </div>
 
                 <div className="modal-body">
-                    <input type="text" value={description} className='form-control'/>
+                    <input type="text" value={description} onChange={(e)=>setDescription(e.target.value)} className='form-control'/>
                 </div>
 
             <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Save changes</button>
+                <button type="button" className="btn btn-warning" data-bs-dismiss="modal" onClick={(e)=>updateTodo(e)}>Save changes</button>
             </div>
             </div>
         </div>
