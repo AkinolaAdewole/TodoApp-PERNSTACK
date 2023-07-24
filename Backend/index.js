@@ -23,7 +23,7 @@ App.post("/todos", async(req,res)=>{
 });
 
 //get all todo
-App.get('/todos', async()=>{
+App.get('/todos', async(req,res)=>{
     try {
         const allTodos = await pool.query("SELECT * FROM todo");
         res.json(allTodos.rows)
@@ -32,7 +32,13 @@ App.get('/todos', async()=>{
     }
 })
 // get a todo
-
+App.get("/todos/:id", async(req,res)=>{
+    try {
+       console.log(req.params); 
+    } catch (err){
+        console.error(err.message);
+    }
+})
 // update a todo
 
 // delete a todo
