@@ -1,5 +1,13 @@
 import React,{Fragment, useState} from 'react'
 
+const onSubmit= async (e)=>{
+ e.preventDefault();
+ try {
+    const body={description};
+ } catch (err){
+    console.error(err.message);
+ }
+}
 const InputTodo = () => {
    const [description, setDescription]= useState("")
   return (
