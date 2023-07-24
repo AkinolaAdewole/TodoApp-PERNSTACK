@@ -6,6 +6,7 @@ import DisplayTodo from './components/DisplayTodo';
 function App() {
   return <Fragment>
         <div className="container">
+           <h3 className='text-center'>Akinola Adewole</h3>
           <InputTodo/>
           <DisplayTodo/>
         </div>
