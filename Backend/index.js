@@ -34,13 +34,26 @@ App.get('/todos', async(req,res)=>{
 // get a todo
 App.get("/todos/:id", async(req,res)=>{
     try {
-       console.log(req.params); 
+    //    console.log(req.params); 
+    const {id}=req.params;
+    const todo = await pool.query("SELECT * FROM todo WHERE todo_id = $1",[id]);
+
+    res.json(todo.rows[0]);
     } catch (err){
         console.error(err.message);
     }
-})
-// update a todo
+});
 
+// update a todo
+App.put("/todos/:id", async(req,res)=>{
+    try {
+        const {id} = req.params;
+        const {description} = req.body;
+        const updateTodo = await pool.query('UPDATE todo SET description = $1 WHERE todo_id = $2',[description,id]);
+    } catch(err){
+        console.error(err);
+    }
+})
 // delete a todo
 
 App.listen(5000, ()=>{
