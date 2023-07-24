@@ -12,10 +12,13 @@ const EditTodo = ({todo}) => {
             {
                 method :"PUT",
                 headers:{"Content-Type":"application/json"},
+                body:JSON.stringify(body)
             })
-        } catch (err) {
-            console.error(err.message);
-        }
+            //  console.log(response);
+            window.location="/";
+            } catch (err) {
+                console.error(err.message);
+            }
     }
   return (
     <Fragment>
@@ -30,7 +33,7 @@ const EditTodo = ({todo}) => {
             <div className="modal-content">
             <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">Edit Todo</h5>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={()=>setDescription(todo.description)}></button>
             </div>
 
                 <div className="modal-body">
@@ -38,7 +41,7 @@ const EditTodo = ({todo}) => {
                 </div>
 
             <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={()=>setDescription(todo.description)} >Close</button>
                 <button type="button" className="btn btn-warning" data-bs-dismiss="modal" onClick={(e)=>updateTodo(e)}>Save changes</button>
             </div>
             </div>
