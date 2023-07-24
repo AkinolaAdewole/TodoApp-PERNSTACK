@@ -3,6 +3,7 @@ import React,{Fragment, useState, useEffect} from 'react'
 const DisplayTodo = () => {
 
     const [todos, setTodos]=useState([]);
+
     const getTodos= async ()=>{
         try {
             const response= await fetch("http://localhost:5000/todos");
@@ -18,7 +19,15 @@ const DisplayTodo = () => {
         getTodos()
     },[]);
 
-    console.log(todos);
+    // console.log(todos);
+
+    const deleteTodo= async()=>{
+        try {
+            
+        } catch (err) {
+            console.error(err.message);
+        }
+    };
 
   return (
     <div>
@@ -52,16 +61,19 @@ const DisplayTodo = () => {
         <td>Dooley</td>
         <td>july@example.com</td>
       </tr>
-      <tr class="warning">
-        <td>Warning</td>
-        <td>Refs</td>
-        <td>bo@example.com</td>
-      </tr>
-      <tr class="active">
-        <td>Active</td>
-        <td>Activeson</td>
-        <td>act@example.com</td>
-      </tr> */}
+      */}
+      {todos.map((todo)=>(
+        <tr key={todo.todo_id}>
+            <td>{todo.description}</td>
+            <td>Edit</td>
+
+            <td>
+                <button 
+                    className='btn btn-danger'
+                    onClick={()=>deleteTodo()}>Delete</button>
+            </td>
+        </tr>
+      ))}
 
 
     </tbody>
