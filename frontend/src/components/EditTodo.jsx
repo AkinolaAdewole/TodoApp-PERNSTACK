@@ -2,7 +2,7 @@ import React from 'react'
 
 const EditTodo = () => {
   return (
-    <div>EditTodo</div>
+    <div>Edit Todo</div>
   )
 }
 
